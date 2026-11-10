@@ -44,7 +44,25 @@ assets/           # 로고, 파비콘
 python3 -m http.server 8000
 ```
 
-## 배포
+## 브라우저에서 보기 (자동 배포)
 
-`main` 브랜치에 푸시하면 GitHub Actions가 GitHub Pages로 배포합니다.
-저장소 Settings → Pages → Source를 **GitHub Actions**로 설정하세요.
+사이트 주소: **https://fromkke1203-code.github.io/website/**
+
+코드가 수정되어 GitHub에 올라가면 1~2분 뒤 위 주소에 자동으로 반영됩니다. 따로 할 일은 없습니다.
+
+### 처음 한 번만 하는 설정
+
+1. 저장소 페이지 상단의 **Settings** 탭을 누릅니다.
+2. 왼쪽 메뉴에서 **Pages**를 누릅니다.
+3. **Build and deployment** 아래 **Source**를 **GitHub Actions**로 바꿉니다.
+4. 상단 **Actions** 탭에서 "Deploy to GitHub Pages"가 초록색 체크로 끝나면 위 주소로 접속합니다.
+
+### 수정 내용이 안 보일 때
+
+- 반영까지 1~2분 걸립니다. **Actions** 탭에서 진행 상황을 볼 수 있습니다.
+- 브라우저가 이전 페이지를 기억하고 있을 수 있습니다. `Ctrl + Shift + R` (맥은 `Cmd + Shift + R`)로 새로고침하세요.
+- **Actions** 탭에 빨간 X가 있으면 배포가 실패한 것입니다. 그 항목을 눌러 오류 내용을 확인하거나 알려 주세요.
+
+### 어떤 브랜치가 배포되나
+
+`main`과 `claude/happy-galileo-e5t8fl` 브랜치에 올라오는 내용이 모두 배포됩니다. 가장 최근에 푸시된 쪽이 사이트에 보입니다. 설정은 `.github/workflows/deploy.yml`에 있습니다.
