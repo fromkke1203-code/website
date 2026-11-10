@@ -52,6 +52,10 @@ python3 -m http.server 8000
 
 ### 처음 한 번만 하는 설정
 
+> 이 저장소는 **비공개(Private)** 입니다. GitHub 무료 요금제에서는 공개 저장소만 Pages로 배포할 수 있으므로,
+> 먼저 **Settings → General → 맨 아래 Danger Zone → Change visibility → Public**으로 바꿔야 합니다.
+> (비공개로 유지하려면 GitHub Pro 유료 요금제가 필요합니다.)
+
 1. 저장소 페이지 상단의 **Settings** 탭을 누릅니다.
 2. 왼쪽 메뉴에서 **Pages**를 누릅니다.
 3. **Build and deployment** 아래 **Source**를 **GitHub Actions**로 바꿉니다.
