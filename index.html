@@ -3,181 +3,442 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="아이디어를 현실로 만드는 웹사이트. 소개, 서비스, 포트폴리오, 문의를 한곳에서 확인하세요.">
-  <meta name="theme-color" content="#0f172a">
-  <title>My Website — 홈</title>
+  <meta name="description" content="ECHOES OF AETHER 공식 홈페이지. 게임 소개, 트레일러, 캐릭터, 스크린샷, 최신 소식과 시스템 요구사항을 확인하세요.">
+  <meta name="theme-color" content="#07080f">
+  <meta property="og:title" content="ECHOES OF AETHER">
+  <meta property="og:description" content="잊힌 세계의 메아리를 따라가는 액션 어드벤처 RPG">
+  <meta property="og:type" content="website">
+  <title>ECHOES OF AETHER — 공식 홈페이지</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
+  <!-- ===== Header ===== -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="#" aria-label="홈으로">
-        <img src="assets/logo.svg" alt="" width="32" height="32">
-        <span>My Website</span>
+        <img src="assets/logo.svg" alt="" width="36" height="36">
+        <span class="logo-text">ECHOES<em>OF</em>AETHER</span>
       </a>
       <nav class="site-nav" aria-label="주요 메뉴">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="메뉴 열기">
           <span></span><span></span><span></span>
         </button>
         <ul id="nav-menu" class="nav-menu">
-          <li><a href="#about">소개</a></li>
-          <li><a href="#services">서비스</a></li>
-          <li><a href="#portfolio">포트폴리오</a></li>
-          <li><a href="#contact">문의</a></li>
-          <li>
-            <button class="theme-toggle" type="button" aria-label="다크 모드 전환" title="다크 모드 전환">
-              <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </li>
+          <li><a href="#about">게임 소개</a></li>
+          <li><a href="#features">특징</a></li>
+          <li><a href="#characters">캐릭터</a></li>
+          <li><a href="#media">미디어</a></li>
+          <li><a href="#news">소식</a></li>
+          <li><a href="#specs">사양</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li class="nav-cta"><a class="btn btn-primary btn-sm" href="#download">사전 등록</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section class="hero">
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-stars"></div>
+        <div class="hero-glow"></div>
+        <svg class="hero-art" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMax slice">
+          <defs>
+            <linearGradient id="mtn1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1f3d"/><stop offset="1" stop-color="#07080f"/></linearGradient>
+            <linearGradient id="mtn2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f5a"/><stop offset="1" stop-color="#0d1020"/></linearGradient>
+            <linearGradient id="mtn3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b3f78"/><stop offset="1" stop-color="#141830"/></linearGradient>
+            <radialGradient id="moon" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9c6ff"/><stop offset=".6" stop-color="#9b7bff"/><stop offset="1" stop-color="#9b7bff" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="1040" cy="200" r="140" fill="url(#moon)" opacity=".6"/>
+          <circle cx="1040" cy="200" r="70" fill="#e9defc"/>
+          <path d="M0 520 L180 380 L320 470 L480 300 L620 430 L760 330 L900 460 L1060 360 L1200 450 L1340 370 L1440 440 L1440 700 L0 700Z" fill="url(#mtn3)"/>
+          <path d="M0 580 L140 470 L300 540 L460 420 L600 520 L780 410 L940 530 L1120 440 L1280 520 L1440 470 L1440 700 L0 700Z" fill="url(#mtn2)"/>
+          <path d="M0 640 L200 560 L380 610 L560 540 L740 600 L920 530 L1100 600 L1280 550 L1440 600 L1440 700 L0 700Z" fill="url(#mtn1)"/>
+          <g class="hero-ruins" fill="#0b0d1a">
+            <rect x="640" y="430" width="24" height="170"/><rect x="690" y="400" width="30" height="200"/><rect x="740" y="440" width="22" height="160"/>
+            <rect x="630" y="420" width="140" height="12"/>
+          </g>
+        </svg>
+      </div>
       <div class="container hero-inner">
-        <p class="eyebrow">Welcome</p>
-        <h1>아이디어를 <span class="accent">현실</span>로 만듭니다</h1>
-        <p class="lead">빠르고 아름답고 접근성 높은 웹사이트. 반응형 디자인과 깔끔한 코드로 시작하세요.</p>
+        <p class="hero-kicker">2027년 출시 예정 · PC / PlayStation 5 / Xbox Series X|S / Nintendo Switch 2</p>
+        <h1 class="hero-title"><span>ECHOES</span><span class="hero-title-small">OF</span><span>AETHER</span></h1>
+        <p class="hero-tagline">잊힌 세계의 메아리를 따라, 사라진 빛을 되찾아라.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">프로젝트 문의하기</a>
-          <a class="btn btn-ghost" href="#portfolio">작업 보기</a>
+          <button class="btn btn-primary btn-lg" type="button" data-trailer>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+            트레일러 보기
+          </button>
+          <a class="btn btn-outline btn-lg" href="#download">사전 등록하기</a>
         </div>
+        <div class="hero-platforms" aria-label="지원 플랫폼">
+          <span class="platform">Steam</span>
+          <span class="platform">PS5</span>
+          <span class="platform">Xbox</span>
+          <span class="platform">Switch 2</span>
+        </div>
+        <div class="hero-age" aria-label="이용 등급"><span class="age-badge">15</span><span>15세 이용가 (심의 예정)</span></div>
       </div>
+      <a class="scroll-hint" href="#about" aria-label="아래로 스크롤"><span></span></a>
     </section>
 
-    <!-- About -->
+    <!-- ===== About / Story ===== -->
     <section id="about" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">About</p>
-          <h2>소개</h2>
-          <p>우리는 사용자 경험을 최우선으로 생각합니다. 작은 디테일까지 신경 쓰는 디자인과 유지보수가 쉬운 코드로 오래 사랑받는 웹사이트를 만듭니다.</p>
+      <div class="container about-grid">
+        <div class="about-text">
+          <p class="eyebrow">About the game</p>
+          <h2 class="section-title">빛이 사라진 세계, <br>당신만이 메아리를 들을 수 있다</h2>
+          <p>천 년 전, 하늘을 떠받치던 에테르의 탑이 무너지고 세계는 영원한 황혼에 잠겼습니다. 당신은 사라진 문명이 남긴 <strong>메아리</strong>를 들을 수 있는 유일한 존재, 리스너로 깨어납니다.</p>
+          <p>부서진 대지를 탐험하고, 잊힌 기술과 마법을 되찾고, 선택에 따라 달라지는 이야기 속에서 세계의 운명을 결정하세요. ECHOES OF AETHER는 탐험과 전투, 서사가 하나로 엮인 싱글 플레이 액션 어드벤처 RPG입니다.</p>
+          <ul class="about-facts">
+            <li><strong>장르</strong><span>액션 어드벤처 RPG</span></li>
+            <li><strong>플레이</strong><span>싱글 플레이 · 스토리 중심</span></li>
+            <li><strong>플레이 타임</strong><span>메인 약 30시간 · 완전 탐험 60시간+</span></li>
+            <li><strong>개발</strong><span>Aether Studio</span></li>
+          </ul>
         </div>
-        <div class="stats">
-          <div class="stat"><strong data-count="120">0</strong><span>완료 프로젝트</span></div>
-          <div class="stat"><strong data-count="98">0</strong><span>고객 만족도(%)</span></div>
-          <div class="stat"><strong data-count="8">0</strong><span>년 경력</span></div>
-        </div>
+        <figure class="about-visual" aria-hidden="true">
+          <div class="keyart keyart-1"></div>
+          <div class="keyart keyart-2"></div>
+        </figure>
       </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="section section-alt">
+    <!-- ===== Features ===== -->
+    <section id="features" class="section section-dark">
       <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Services</p>
-          <h2>서비스</h2>
-          <p>기획부터 배포까지, 필요한 모든 단계를 함께합니다.</p>
+        <div class="section-head center">
+          <p class="eyebrow">Features</p>
+          <h2 class="section-title">게임 특징</h2>
         </div>
-        <div class="grid grid-3">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🎨</div>
-            <h3>UI/UX 디자인</h3>
-            <p>사용자의 흐름을 고려한 직관적인 인터페이스를 설계합니다.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">💻</div>
-            <h3>웹 개발</h3>
-            <p>표준을 준수한 시맨틱 마크업과 최신 CSS, 자바스크립트로 구현합니다.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🚀</div>
-            <h3>배포 &amp; 운영</h3>
-            <p>GitHub Pages, Vercel 등 다양한 플랫폼에 배포하고 안정적으로 운영합니다.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Portfolio</p>
-          <h2>포트폴리오</h2>
-          <p>최근 진행한 프로젝트 일부를 소개합니다.</p>
-        </div>
-        <div class="grid grid-3">
-          <article class="project">
-            <div class="project-thumb" style="--thumb: linear-gradient(135deg,#6366f1,#8b5cf6)"></div>
-            <div class="project-body">
-              <h3>브랜드 랜딩 페이지</h3>
-              <p>신규 브랜드 런칭을 위한 원페이지 사이트.</p>
-              <ul class="tags"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+        <div class="features">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="40" height="40"><path d="M24 4l6 12 13 2-9.5 9 2.5 13L24 34l-12 6 2.5-13L5 18l13-2z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
             </div>
+            <h3>메아리 시스템</h3>
+            <p>과거의 잔상을 불러내 길을 열고, 전투 중에는 적의 다음 수를 미리 읽습니다. 탐험과 전투를 하나로 잇는 핵심 메커닉입니다.</p>
           </article>
-          <article class="project">
-            <div class="project-thumb" style="--thumb: linear-gradient(135deg,#06b6d4,#3b82f6)"></div>
-            <div class="project-body">
-              <h3>온라인 쇼핑몰</h3>
-              <p>상품 탐색과 결제 흐름을 단순화한 커머스 사이트.</p>
-              <ul class="tags"><li>React</li><li>API</li></ul>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="40" height="40"><path d="M8 40L40 8M28 8h12v12M14 26l8 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
+            <h3>손맛 있는 전투</h3>
+            <p>근접 무기, 원거리 룬, 에테르 마법을 자유롭게 조합하세요. 패링과 회피 타이밍이 승패를 가르는 긴장감 있는 액션입니다.</p>
           </article>
-          <article class="project">
-            <div class="project-thumb" style="--thumb: linear-gradient(135deg,#f59e0b,#ef4444)"></div>
-            <div class="project-body">
-              <h3>기업 블로그</h3>
-              <p>검색 최적화와 빠른 로딩에 집중한 콘텐츠 사이트.</p>
-              <ul class="tags"><li>SEO</li><li>Markdown</li></ul>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="40" height="40"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M24 6c6 6 6 30 0 36M24 6c-6 6-6 30 0 36M6 24h36" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
             </div>
+            <h3>끊김 없는 오픈 월드</h3>
+            <p>하늘에 떠 있는 섬부터 지하 도시까지, 로딩 없이 이어지는 광활한 세계를 걸어서, 날아서, 혹은 메아리를 타고 탐험합니다.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="40" height="40"><path d="M10 38V14l14-8 14 8v24L24 46z M24 22v24 M10 14l14 8 14-8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>선택이 바꾸는 이야기</h3>
+            <p>동료와의 관계, 세력 간의 갈등, 당신의 결정이 세계와 결말을 바꿉니다. 네 가지 엔딩이 기다립니다.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section section-alt">
-      <div class="container contact-inner">
-        <div class="section-head">
-          <p class="eyebrow">Contact</p>
-          <h2>문의하기</h2>
-          <p>프로젝트에 대해 이야기해 보세요. 영업일 기준 1~2일 내에 답변드립니다.</p>
+    <!-- ===== Characters ===== -->
+    <section id="characters" class="section">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Characters</p>
+          <h2 class="section-title">캐릭터</h2>
         </div>
-        <form class="contact-form" novalidate>
-          <div class="field">
-            <label for="name">이름</label>
-            <input id="name" name="name" type="text" autocomplete="name" required>
-            <p class="error" aria-live="polite"></p>
+        <div class="characters">
+          <div class="char-tabs" role="tablist" aria-label="캐릭터 선택">
+            <button role="tab" aria-selected="true" aria-controls="char-0" id="tab-0" class="char-tab active">
+              <span class="char-avatar av-1" aria-hidden="true"></span><span>리안</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="char-1" id="tab-1" class="char-tab" tabindex="-1">
+              <span class="char-avatar av-2" aria-hidden="true"></span><span>세라</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="char-2" id="tab-2" class="char-tab" tabindex="-1">
+              <span class="char-avatar av-3" aria-hidden="true"></span><span>카일</span>
+            </button>
+            <button role="tab" aria-selected="false" aria-controls="char-3" id="tab-3" class="char-tab" tabindex="-1">
+              <span class="char-avatar av-4" aria-hidden="true"></span><span>녹스</span>
+            </button>
           </div>
-          <div class="field">
-            <label for="email">이메일</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-            <p class="error" aria-live="polite"></p>
+
+          <div class="char-panels">
+            <div role="tabpanel" id="char-0" aria-labelledby="tab-0" class="char-panel active">
+              <div class="char-art av-1" aria-hidden="true"></div>
+              <div class="char-info">
+                <p class="char-role">주인공 · 리스너</p>
+                <h3>리안 <small>Lian</small></h3>
+                <p>기억을 잃은 채 폐허에서 깨어난 청년. 사라진 문명의 메아리를 들을 수 있는 유일한 존재입니다. 과거를 되찾으려는 여정이 세계의 운명과 얽히기 시작합니다.</p>
+                <dl class="char-stats">
+                  <div><dt>무기</dt><dd>에테르 검</dd></div>
+                  <div><dt>특기</dt><dd>메아리 감응</dd></div>
+                  <div><dt>성우</dt><dd>미정</dd></div>
+                </dl>
+              </div>
+            </div>
+            <div role="tabpanel" id="char-1" aria-labelledby="tab-1" class="char-panel" hidden>
+              <div class="char-art av-2" aria-hidden="true"></div>
+              <div class="char-info">
+                <p class="char-role">동료 · 유적 학자</p>
+                <h3>세라 <small>Sera</small></h3>
+                <p>무너진 탑의 비밀을 쫓는 학자. 냉철한 분석력으로 리안의 여정을 이끕니다. 고대 기술을 복원해 전투와 탐험을 지원합니다.</p>
+                <dl class="char-stats">
+                  <div><dt>무기</dt><dd>룬 활</dd></div>
+                  <div><dt>특기</dt><dd>고대 기술 복원</dd></div>
+                  <div><dt>성우</dt><dd>미정</dd></div>
+                </dl>
+              </div>
+            </div>
+            <div role="tabpanel" id="char-2" aria-labelledby="tab-2" class="char-panel" hidden>
+              <div class="char-art av-3" aria-hidden="true"></div>
+              <div class="char-info">
+                <p class="char-role">동료 · 방랑 기사</p>
+                <h3>카일 <small>Kyle</small></h3>
+                <p>몰락한 기사단의 마지막 생존자. 거대한 대검과 흔들리지 않는 신념으로 앞을 가로막는 모든 것을 베어 냅니다.</p>
+                <dl class="char-stats">
+                  <div><dt>무기</dt><dd>대검</dd></div>
+                  <div><dt>특기</dt><dd>방어 · 도발</dd></div>
+                  <div><dt>성우</dt><dd>미정</dd></div>
+                </dl>
+              </div>
+            </div>
+            <div role="tabpanel" id="char-3" aria-labelledby="tab-3" class="char-panel" hidden>
+              <div class="char-art av-4" aria-hidden="true"></div>
+              <div class="char-info">
+                <p class="char-role">적대자 · 황혼의 사제</p>
+                <h3>녹스 <small>Nox</small></h3>
+                <p>영원한 황혼을 유지하려는 비밀 결사의 수장. 빛의 귀환을 막기 위해 리안을 추적합니다. 그의 목적은 단순한 악의가 아닙니다.</p>
+                <dl class="char-stats">
+                  <div><dt>무기</dt><dd>그림자 마법</dd></div>
+                  <div><dt>특기</dt><dd>환영 · 지배</dd></div>
+                  <div><dt>성우</dt><dd>미정</dd></div>
+                </dl>
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <label for="message">메시지</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-            <p class="error" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Media ===== -->
+    <section id="media" class="section section-dark">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Media</p>
+          <h2 class="section-title">스크린샷 &amp; 영상</h2>
+        </div>
+        <div class="media-video">
+          <button class="video-card" type="button" data-trailer aria-label="공식 트레일러 재생">
+            <div class="video-thumb" aria-hidden="true"></div>
+            <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="36" height="36"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="video-label">공식 트레일러 · 2:14</span>
+          </button>
+        </div>
+        <div class="gallery">
+          <button class="shot shot-1" type="button" data-lightbox="1" aria-label="스크린샷 1 크게 보기"><span>떠 있는 섬의 새벽</span></button>
+          <button class="shot shot-2" type="button" data-lightbox="2" aria-label="스크린샷 2 크게 보기"><span>지하 도시 네이르</span></button>
+          <button class="shot shot-3" type="button" data-lightbox="3" aria-label="스크린샷 3 크게 보기"><span>황혼의 수호자와의 전투</span></button>
+          <button class="shot shot-4" type="button" data-lightbox="4" aria-label="스크린샷 4 크게 보기"><span>에테르의 탑 잔해</span></button>
+          <button class="shot shot-5" type="button" data-lightbox="5" aria-label="스크린샷 5 크게 보기"><span>메아리 감응</span></button>
+          <button class="shot shot-6" type="button" data-lightbox="6" aria-label="스크린샷 6 크게 보기"><span>폭풍 해안</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== News ===== -->
+    <section id="news" class="section">
+      <div class="container">
+        <div class="section-head between">
+          <div>
+            <p class="eyebrow">News</p>
+            <h2 class="section-title">최신 소식</h2>
           </div>
-          <button class="btn btn-primary" type="submit">보내기</button>
+          <a class="link-more" href="#news">전체 보기 →</a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <div class="news-thumb nt-1" aria-hidden="true"></div>
+            <div class="news-body">
+              <div class="news-meta"><span class="tag tag-update">공지</span><time datetime="2026-11-10">2026.11.10</time></div>
+              <h3><a href="#">공식 홈페이지 오픈 및 사전 등록 시작</a></h3>
+              <p>ECHOES OF AETHER 공식 홈페이지가 열렸습니다. 사전 등록하고 출시 소식을 가장 먼저 받아 보세요.</p>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-thumb nt-2" aria-hidden="true"></div>
+            <div class="news-body">
+              <div class="news-meta"><span class="tag tag-dev">개발 노트</span><time datetime="2026-10-28">2026.10.28</time></div>
+              <h3><a href="#">개발 노트 #1 — 메아리 시스템은 어떻게 탄생했나</a></h3>
+              <p>탐험과 전투를 잇는 핵심 메커닉의 설계 과정을 디렉터가 직접 소개합니다.</p>
+            </div>
+          </article>
+          <article class="news-card">
+            <div class="news-thumb nt-3" aria-hidden="true"></div>
+            <div class="news-body">
+              <div class="news-meta"><span class="tag tag-event">이벤트</span><time datetime="2026-10-15">2026.10.15</time></div>
+              <h3><a href="#">지스타 2026 시연 버전 출품 안내</a></h3>
+              <p>부산 벡스코에서 열리는 지스타 2026에서 처음으로 플레이해 볼 수 있습니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Specs ===== -->
+    <section id="specs" class="section section-dark">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">System requirements</p>
+          <h2 class="section-title">PC 시스템 요구사항</h2>
+        </div>
+        <div class="specs">
+          <div class="spec-col">
+            <h3>최소 사양</h3>
+            <dl>
+              <div><dt>운영체제</dt><dd>Windows 10 64-bit</dd></div>
+              <div><dt>프로세서</dt><dd>Intel Core i5-8400 / AMD Ryzen 5 2600</dd></div>
+              <div><dt>메모리</dt><dd>12 GB RAM</dd></div>
+              <div><dt>그래픽</dt><dd>NVIDIA GTX 1060 6GB / AMD RX 580</dd></div>
+              <div><dt>저장공간</dt><dd>60 GB (SSD 권장)</dd></div>
+              <div><dt>DirectX</dt><dd>버전 12</dd></div>
+            </dl>
+          </div>
+          <div class="spec-col spec-rec">
+            <h3>권장 사양</h3>
+            <dl>
+              <div><dt>운영체제</dt><dd>Windows 11 64-bit</dd></div>
+              <div><dt>프로세서</dt><dd>Intel Core i7-12700 / AMD Ryzen 7 5800X</dd></div>
+              <div><dt>메모리</dt><dd>16 GB RAM</dd></div>
+              <div><dt>그래픽</dt><dd>NVIDIA RTX 3070 / AMD RX 6800</dd></div>
+              <div><dt>저장공간</dt><dd>60 GB SSD</dd></div>
+              <div><dt>DirectX</dt><dd>버전 12</dd></div>
+            </dl>
+          </div>
+        </div>
+        <p class="specs-note">사양은 개발 진행에 따라 변경될 수 있습니다. 콘솔 버전은 각 플랫폼 기준을 따릅니다.</p>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section id="faq" class="section">
+      <div class="container narrow">
+        <div class="section-head center">
+          <p class="eyebrow">FAQ</p>
+          <h2 class="section-title">자주 묻는 질문</h2>
+        </div>
+        <div class="faq">
+          <details class="faq-item" open>
+            <summary>출시일은 언제인가요?</summary>
+            <p>2027년 출시를 목표로 개발 중입니다. 정확한 날짜는 추후 공지를 통해 안내드립니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>어떤 플랫폼에서 플레이할 수 있나요?</summary>
+            <p>PC(Steam), PlayStation 5, Xbox Series X|S, Nintendo Switch 2에서 출시 예정입니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>멀티플레이를 지원하나요?</summary>
+            <p>ECHOES OF AETHER는 스토리에 집중한 싱글 플레이 게임입니다. 멀티플레이 모드는 계획되어 있지 않습니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>한국어를 지원하나요?</summary>
+            <p>네. 한국어 자막과 인터페이스를 완전히 지원하며, 한국어 음성 지원도 검토 중입니다.</p>
+          </details>
+          <details class="faq-item">
+            <summary>사전 등록하면 어떤 혜택이 있나요?</summary>
+            <p>출시 소식을 가장 먼저 받아 볼 수 있고, 출시 시 사용할 수 있는 한정 꾸미기 아이템을 드립니다.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Download / Pre-register ===== -->
+    <section id="download" class="section cta">
+      <div class="cta-bg" aria-hidden="true"></div>
+      <div class="container cta-inner">
+        <p class="eyebrow">Pre-register</p>
+        <h2 class="section-title">출시 소식을 가장 먼저 받아 보세요</h2>
+        <p class="cta-lead">이메일을 남기면 출시일, 베타 테스트, 한정 보상 소식을 보내 드립니다.</p>
+        <form class="newsletter" novalidate>
+          <label class="sr-only" for="nl-email">이메일 주소</label>
+          <input id="nl-email" type="email" name="email" placeholder="이메일 주소를 입력하세요" autocomplete="email" required>
+          <button class="btn btn-primary" type="submit">사전 등록</button>
           <p class="form-status" role="status" aria-live="polite"></p>
         </form>
+        <div class="store-buttons" aria-label="스토어 바로가기">
+          <a class="store" href="#" aria-label="Steam에서 위시리스트 추가">Steam 위시리스트</a>
+          <a class="store" href="#" aria-label="PlayStation Store">PlayStation Store</a>
+          <a class="store" href="#" aria-label="Xbox Store">Xbox Store</a>
+          <a class="store" href="#" aria-label="Nintendo eShop">Nintendo eShop</a>
+        </div>
       </div>
     </section>
   </main>
 
+  <!-- ===== Footer ===== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> My Website. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="#about">소개</a></li>
-        <li><a href="#services">서비스</a></li>
-        <li><a href="#portfolio">포트폴리오</a></li>
-        <li><a href="#contact">문의</a></li>
+    <div class="container footer-top">
+      <div class="footer-brand">
+        <img src="assets/logo.svg" alt="" width="40" height="40">
+        <div>
+          <strong>ECHOES OF AETHER</strong>
+          <p>Developed by Aether Studio</p>
+        </div>
+      </div>
+      <ul class="social" aria-label="소셜 미디어">
+        <li><a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.1V8.9l6 3.1z" fill="currentColor"/></svg></a></li>
+        <li><a href="#" aria-label="X"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4zm-1.2 18h1.9L7.1 3.9H5.1z" fill="currentColor"/></svg></a></li>
+        <li><a href="#" aria-label="Discord"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.2.5a18 18 0 0 1 4.4 2.2 16 16 0 0 0-15.2 0A18 18 0 0 1 8.8 3.5L8.6 3a19.8 19.8 0 0 0-4.9 1.4C.6 9.1-.2 13.6.2 18a20 20 0 0 0 6 3l1.3-2a13 13 0 0 1-2-1l.5-.4a14.3 14.3 0 0 0 12 0l.5.4a13 13 0 0 1-2 1l1.3 2a20 20 0 0 0 6-3c.5-5.1-.8-9.6-3.5-13.6zM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4z" fill="currentColor"/></svg></a></li>
+        <li><a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a></li>
       </ul>
     </div>
+    <div class="container footer-bottom">
+      <ul class="footer-links">
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보 처리방침</a></li>
+        <li><a href="#">프레스 키트</a></li>
+        <li><a href="#">문의</a></li>
+      </ul>
+      <p>&copy; <span id="year"></span> Aether Studio. All rights reserved. 모든 상표는 각 소유자의 자산입니다.</p>
+    </div>
   </footer>
+
+  <!-- ===== Trailer modal ===== -->
+  <div class="modal" id="trailer-modal" hidden role="dialog" aria-modal="true" aria-label="공식 트레일러">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-body">
+      <button class="modal-close" type="button" data-close aria-label="닫기">×</button>
+      <div class="modal-video">
+        <!-- 트레일러가 준비되면 아래 iframe의 src를 YouTube 임베드 주소로 바꾸세요. -->
+        <div class="video-placeholder">
+          <p>트레일러 준비 중</p>
+          <small>YouTube 영상 주소를 연결하면 이 자리에 재생됩니다.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="modal" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="스크린샷">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-body lightbox-body">
+      <button class="modal-close" type="button" data-close aria-label="닫기">×</button>
+      <button class="lb-nav lb-prev" type="button" aria-label="이전">‹</button>
+      <div class="lb-image shot-1"><span class="lb-caption"></span></div>
+      <button class="lb-nav lb-next" type="button" aria-label="다음">›</button>
+    </div>
+  </div>
 
   <button class="to-top" type="button" aria-label="맨 위로">↑</button>
 

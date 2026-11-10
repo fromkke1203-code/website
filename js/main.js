@@ -1,38 +1,26 @@
 (function () {
   "use strict";
 
-  /* ---------- Theme ---------- */
-  var root = document.documentElement;
-  var THEME_KEY = "theme";
+  var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
+  var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
-  function applyTheme(theme) {
-    if (theme === "dark") root.setAttribute("data-theme", "dark");
-    else root.removeAttribute("data-theme");
+  /* ---------- Header: solid on scroll ---------- */
+  var header = $(".site-header");
+  function onScrollHeader() {
+    if (header) header.classList.toggle("scrolled", window.scrollY > 40);
   }
-
-  function initTheme() {
-    var saved = null;
-    try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
-    if (saved) {
-      applyTheme(saved);
-    } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      applyTheme("dark");
-    }
-  }
-  initTheme();
-
-  var themeToggle = document.querySelector(".theme-toggle");
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      applyTheme(next);
-      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
-    });
-  }
+  window.addEventListener("scroll", onScrollHeader, { passive: true });
+  onScrollHeader();
 
   /* ---------- Mobile nav ---------- */
-  var navToggle = document.querySelector(".nav-toggle");
-  var navMenu = document.getElementById("nav-menu");
+  var navToggle = $(".nav-toggle");
+  var navMenu = $("#nav-menu");
+  function closeNav() {
+    if (!navMenu) return;
+    navMenu.classList.remove("open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "메뉴 열기");
+  }
   if (navToggle && navMenu) {
     navToggle.addEventListener("click", function () {
       var open = navMenu.classList.toggle("open");
@@ -40,16 +28,13 @@
       navToggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
     });
     navMenu.addEventListener("click", function (e) {
-      if (e.target.tagName === "A") {
-        navMenu.classList.remove("open");
-        navToggle.setAttribute("aria-expanded", "false");
-      }
+      if (e.target.closest("a")) closeNav();
     });
   }
 
-  /* ---------- Active nav link on scroll ---------- */
-  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-menu a[href^='#']"));
+  /* ---------- Active nav link ---------- */
+  var sections = $$("main section[id]");
+  var navLinks = $$(".nav-menu a[href^='#']:not(.btn)");
   if (sections.length && navLinks.length && "IntersectionObserver" in window) {
     var activeObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -59,12 +44,12 @@
           link.classList.toggle("active", link.getAttribute("href") === "#" + id);
         });
       });
-    }, { rootMargin: "-40% 0px -55% 0px" });
+    }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(function (s) { activeObserver.observe(s); });
   }
 
   /* ---------- Reveal on scroll ---------- */
-  var revealTargets = document.querySelectorAll(".card, .project, .stat, .section-head");
+  var revealTargets = $$(".feature, .news-card, .spec-col, .faq-item, .shot, .section-head, .about-text, .about-visual, .video-card");
   if ("IntersectionObserver" in window) {
     var revealObserver = new IntersectionObserver(function (entries, obs) {
       entries.forEach(function (entry) {
@@ -73,99 +58,144 @@
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
     revealTargets.forEach(function (el) {
       el.classList.add("reveal");
       revealObserver.observe(el);
     });
-  }
-
-  /* ---------- Count-up stats ---------- */
-  var counters = document.querySelectorAll("[data-count]");
-  function animateCount(el) {
-    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
-    var duration = 1200;
-    var start = null;
-    function step(ts) {
-      if (start === null) start = ts;
-      var progress = Math.min((ts - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased).toLocaleString("ko-KR");
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  if (counters.length) {
-    if ("IntersectionObserver" in window) {
-      var countObserver = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            animateCount(entry.target);
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      counters.forEach(function (c) { countObserver.observe(c); });
-    } else {
-      counters.forEach(function (c) { c.textContent = c.getAttribute("data-count"); });
-    }
-  }
-
-  /* ---------- Contact form validation ---------- */
-  var form = document.querySelector(".contact-form");
-  if (form) {
-    var status = form.querySelector(".form-status");
-
-    function setError(input, message) {
-      var field = input.closest(".field");
-      var error = field.querySelector(".error");
-      field.classList.toggle("invalid", Boolean(message));
-      error.textContent = message || "";
-      input.setAttribute("aria-invalid", message ? "true" : "false");
-    }
-
-    function validate(input) {
-      var value = input.value.trim();
-      if (!value) return "필수 입력 항목입니다.";
-      if (input.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "올바른 이메일 주소를 입력해 주세요.";
-      if (input.tagName === "TEXTAREA" && value.length < 10) return "메시지는 10자 이상 입력해 주세요.";
-      return "";
-    }
-
-    var inputs = Array.prototype.slice.call(form.querySelectorAll("input, textarea"));
-    inputs.forEach(function (input) {
-      input.addEventListener("blur", function () { setError(input, validate(input)); });
-      input.addEventListener("input", function () {
-        if (input.closest(".field").classList.contains("invalid")) setError(input, validate(input));
+    // 빠른 스크롤로 관찰을 놓친 요소도 화면 위쪽을 지나갔다면 표시
+    window.addEventListener("scroll", function () {
+      var limit = window.scrollY + window.innerHeight;
+      revealTargets.forEach(function (el) {
+        if (!el.classList.contains("visible") && el.getBoundingClientRect().top + window.scrollY < limit) {
+          el.classList.add("visible");
+        }
       });
-    });
+    }, { passive: true });
+  }
 
+  /* ---------- Character tabs ---------- */
+  var tabs = $$(".char-tab");
+  var panels = $$(".char-panel");
+  function activateTab(index) {
+    tabs.forEach(function (tab, i) {
+      var on = i === index;
+      tab.classList.toggle("active", on);
+      tab.setAttribute("aria-selected", String(on));
+      tab.setAttribute("tabindex", on ? "0" : "-1");
+    });
+    panels.forEach(function (panel, i) {
+      var on = i === index;
+      panel.classList.toggle("active", on);
+      if (on) panel.removeAttribute("hidden"); else panel.setAttribute("hidden", "");
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { activateTab(i); });
+    tab.addEventListener("keydown", function (e) {
+      var next = null;
+      if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+      if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === "Home") next = 0;
+      if (e.key === "End") next = tabs.length - 1;
+      if (next !== null) { e.preventDefault(); activateTab(next); tabs[next].focus(); }
+    });
+  });
+
+  /* ---------- Modal helpers ---------- */
+  var lastFocus = null;
+  function openModal(modal) {
+    lastFocus = document.activeElement;
+    modal.removeAttribute("hidden");
+    document.body.classList.add("modal-open");
+    var closeBtn = $(".modal-close", modal);
+    if (closeBtn) closeBtn.focus();
+  }
+  function closeModal(modal) {
+    modal.setAttribute("hidden", "");
+    document.body.classList.remove("modal-open");
+    var iframe = $("iframe", modal);
+    if (iframe) iframe.src = iframe.src; // 영상 정지
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  $$(".modal").forEach(function (modal) {
+    $$("[data-close]", modal).forEach(function (el) {
+      el.addEventListener("click", function () { closeModal(modal); });
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    $$(".modal:not([hidden])").forEach(closeModal);
+  });
+
+  /* ---------- Trailer ---------- */
+  var trailerModal = $("#trailer-modal");
+  if (trailerModal) {
+    $$("[data-trailer]").forEach(function (btn) {
+      btn.addEventListener("click", function () { openModal(trailerModal); });
+    });
+  }
+
+  /* ---------- Lightbox ---------- */
+  var lightbox = $("#lightbox");
+  var shots = $$("[data-lightbox]");
+  if (lightbox && shots.length) {
+    var lbImage = $(".lb-image", lightbox);
+    var lbCaption = $(".lb-caption", lightbox);
+    var current = 0;
+    function showShot(index) {
+      current = (index + shots.length) % shots.length;
+      var shot = shots[current];
+      lbImage.className = "lb-image shot-" + (current + 1);
+      lbCaption.textContent = shot.textContent.trim();
+    }
+    shots.forEach(function (shot, i) {
+      shot.addEventListener("click", function () { showShot(i); openModal(lightbox); });
+    });
+    $(".lb-prev", lightbox).addEventListener("click", function () { showShot(current - 1); });
+    $(".lb-next", lightbox).addEventListener("click", function () { showShot(current + 1); });
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hasAttribute("hidden")) return;
+      if (e.key === "ArrowLeft") showShot(current - 1);
+      if (e.key === "ArrowRight") showShot(current + 1);
+    });
+  }
+
+  /* ---------- Newsletter ---------- */
+  var form = $(".newsletter");
+  if (form) {
+    var input = $("input[type=email]", form);
+    var status = $(".form-status", form);
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var firstInvalid = null;
-      inputs.forEach(function (input) {
-        var msg = validate(input);
-        setError(input, msg);
-        if (msg && !firstInvalid) firstInvalid = input;
-      });
-      if (firstInvalid) {
-        firstInvalid.focus();
+      var value = input.value.trim();
+      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      input.classList.toggle("invalid", !valid);
+      input.setAttribute("aria-invalid", String(!valid));
+      if (!valid) {
         status.className = "form-status fail";
-        status.textContent = "입력 내용을 확인해 주세요.";
+        status.textContent = "올바른 이메일 주소를 입력해 주세요.";
+        input.focus();
         return;
       }
-      // 실제 전송은 백엔드 또는 Formspree 등의 서비스에 연결하세요.
+      // 실제 전송은 Mailchimp, Formspree 등 서비스에 연결하세요.
       status.className = "form-status success";
-      status.textContent = "메시지가 준비되었습니다. 전송 서비스를 연결하면 바로 발송됩니다.";
+      status.textContent = "사전 등록이 완료되었습니다! 출시 소식을 가장 먼저 보내 드릴게요.";
       form.reset();
+    });
+    input.addEventListener("input", function () {
+      if (input.classList.contains("invalid")) {
+        input.classList.remove("invalid");
+        status.textContent = "";
+      }
     });
   }
 
   /* ---------- Back to top ---------- */
-  var toTop = document.querySelector(".to-top");
+  var toTop = $(".to-top");
   if (toTop) {
     window.addEventListener("scroll", function () {
-      toTop.classList.toggle("show", window.scrollY > 400);
+      toTop.classList.toggle("show", window.scrollY > 600);
     }, { passive: true });
     toTop.addEventListener("click", function () {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -173,6 +203,6 @@
   }
 
   /* ---------- Footer year ---------- */
-  var year = document.getElementById("year");
+  var year = $("#year");
   if (year) year.textContent = new Date().getFullYear();
 })();
